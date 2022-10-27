@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './style.css';
 
 export default function App() {
@@ -9,9 +9,13 @@ export default function App() {
       if (time.current && time.current > 0) {
         time.current -= 1;
       } else {
-        time.current = 10;
+        if (time.current === 0) {
+          clearInterval(timeRef.current);
+        } else {
+          time.current = 10;
+        }
       }
-    });
+    }, 1000);
   }, []);
   return (
     <div>
