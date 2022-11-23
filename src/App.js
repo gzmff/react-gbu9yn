@@ -1,9 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './style.css';
 
 export default function App() {
   const timeRef = useRef();
   const time = useRef();
+  const [num, setNum] = useState(0);
   useEffect(() => {
     timeRef.current = setInterval(() => {
       if (time.current && time.current > 0) {
