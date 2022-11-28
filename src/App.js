@@ -42,6 +42,9 @@ export default function App() {
     console.log(num);
   }, [num]);
   useEffect(() => {
+    console.log(num, 'num');
+  });
+  useEffect(() => {
     timeRef.current = setInterval(() => {
       if (time.current && time.current > 0) {
         time.current -= 1;
