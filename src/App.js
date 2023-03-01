@@ -62,6 +62,34 @@ export default function App() {
       setNum((num) => num + 1);
     }
   };
+  function compose(...funcs) {
+    if (funcs.length === 0) {
+      return (arg) => arg;
+    }
+
+    if (funcs.length === 1) {
+      return funcs[0];
+    }
+
+    return funcs.reduce((a, b) => {
+      console.warn(a);
+      return (...args) => {
+        debugger;
+        return a(b(...args));
+      };
+    });
+  }
+
+  function add(a) {
+    return function (b) {
+      return a + b;
+    };
+  }
+
+  // 得到合成后的方法
+  let add6 = compose(add(1), add(2), add(3));
+
+  console.warn(add6(10));
   return (
     <div>
       <h1 onClick={click}>{num}</h1>
